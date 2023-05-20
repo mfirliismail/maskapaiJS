@@ -111,8 +111,8 @@ function sortingJadwal(data, field, type) {
         // return timeB - timeA;
       }
     } else {
-      timeA = new Date(a.arival_time);
-      timeB = new Date(b.arival_time);
+      timeA = new Date(a.departure_time);
+      timeB = new Date(b.departure_time);
       if (type === "asc") {
         return timeA - timeB;
       } else {
