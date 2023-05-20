@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./maskapai.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
+    <script src="./maskapai.js"></script> 
+  </head>
+  <body>
+    <div class="container">
+      <div class="card my-3">
+        <div class="card-header px-3 d-flex">
+          <h3 class="m-0">Jadwal Penerbangan</h3>
+        </div>
+        <div class="card-header px-3 d-flex justify-content-between align-items-center">
+          <div class="form-group mb-0">
+            <label for="maskapai">Maskapai:</label>
+            <select class="form-control" id="maskapai">
+              <option value="all">Semua</option>
+              <script>
+
+                  for (var i = 0; i <= airlines_data.length; i++) {
+                    const airline = airlines_data[i];
+                    console.log(airline)
+                    //document.write('<option value="' + airline.Code + '">' + airline.Name + '</option>');
+                    if(airline){
+                      document.write(`<option value="${airline.Code}">${airline.Name}</option>`);
+                    }
+                  }
+                </script>
+            </select>
+          </div>
+          <div class="d-flex">
+            <div class="form-group mb-0 mr-2">
+              <label for="from">Dari:</label>
+              <select class="form-control" id="from">
+                <!-- Perulangan untuk opsi jam -->
+                <script>
+                  for (var i = 0; i <= 24; i++) {
+                    var hour = i.toString().padStart(2, '0');
+                    document.write('<option value="' + i + '">' + hour + ':00</option>');
+                  }
+                </script>
+              </select>
+            </div>
+            
+            <div class="form-group mb-0 ml-2">
+              <label for="to">Ke:</label>
+              <select class="form-control" id="to">
+                <!-- Perulangan untuk opsi jam -->
+                <script>
+                  for (var i = 0; i <= 24; i++) {
+                    var hour = i.toString().padStart(2, '0');
+                    document.write('<option value="' + i + '">' + hour + ':00</option>');
+                  }
+                </script>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="filter-btn">Filter</button>
+        </div>
+        <div class="card-header px-3 d-flex justify-content-between align-items-center">
+          <div class="form-group mb-0 mr-2">
+            <label for="sort-by">Sort By</label>
+          <select class="form-control" id="sort-by">
+            <option value="airlines">Maskapai</option>
+            <option value="arival_time">Jam</option>
+          </select>
+          </div>
+          <div class="form-group mb-0 mr-2">
+            <label for="sort-value"></label>
+          <select class="form-control" id="sort-value">
+            <option value="asc">ASC</option>
+            <option value="desc">DESC</option>
+          </select>
+          </div>
+          <div>
+            <button class="btn btn-success" onclick="onClickSort(event)">Sort</button>
+          </div>
+        </div>
+        
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            
+            <ul class="list-group mt-3" id="jadwal">
+            </ul>
+            <!-- <table id="jadwal" class="table table-striped m-0">
+              <thead>
+                <tr>
+                  <th>Nama Maskapai</th>
+                  <th>Departure</th>
+                  <th>Arrival</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
